@@ -8,20 +8,35 @@ chrome.commands.onCommand.addListener(function (command) {
           windowId: currentWindow.id,
         },
         function (tabs) {
+          var tabIds = new Array(tabs.length)
+          for (var element in tabs) tabIds.push(element.id)
+          var tabsToDelete = new Array(0)
+
           switch (command) {
-            case 'close-tab-all-except':
-              console.log('all except')
+            case 'close-all-except':
+              for (var element of tabIds.filter(
+                (value) => value !== currentTab.id
+              ))
+                tabsToDelete.push(element)
               break
-            case 'close-tabs-all-including':
-              console.log('all including')
+            case 'close-all-other-tabs':
+              for (var element of tabIds) tabsToDelete.push(element)
               break
-            case 'close-tabs-right':
-              console.log('right')
+            case 'close-right-tabs':
+              for (var element of tabsIds.slice(
+                tabIds.indexOf(currentTab.id + 1)
+              ))
+                tabsToDelete.push(element)
               break
-            case 'close-tabs-left':
-              console.log('left')
+            case 'close-left-tabs':
+              for (var element of tabIds.slice(
+                null,
+                tabIds.indexOf(currentTab.id)
+              ))
+                tabsToDelete.push(element)
               break
           }
+          chrome.tabs.remove(tabsToDelete)
         }
       )
     })
