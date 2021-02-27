@@ -13,7 +13,7 @@
     "newtab": "./html/empty.html"
   },
   "background": {
-    "scripts": ["./javascript/background.js"],
+    "scripts": ["./background.js"],
     "persistent": false
   },
   "options_page": "./html/options.html",
