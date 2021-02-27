@@ -4,21 +4,21 @@
   "description": "Enables ultimate control over tabs.",
   "manifest_version": 2,
   "icons": {
-    "16": "./icon-16.png",
-    "32": "./icon-32.png",
-    "48": "./icon-48.png",
-    "128": "./icon-128.png"
+    "16": "./static/icon-16.png",
+    "32": "./static/icon-32.png",
+    "48": "./static/icon-48.png",
+    "128": "./static/icon-128.png"
   },
   "chrome_url_overrides": {
-    "newtab": "empty.html"
+    "newtab": "./html/empty.html"
   },
   "background": {
-    "scripts": ["./background.js"],
+    "scripts": ["./javascript/background.js"],
     "persistent": false
   },
-  "options_page": "./options.html",
+  "options_page": "./html/options.html",
   "browser_action": {
-    "default_popup": "./popup.html"
+    "default_popup": "./html/popup.html"
   },
   "permissions": ["tabs"],
   "commands": {
