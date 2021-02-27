@@ -1,0 +1,54 @@
+{
+  "name": "Tab Tsar",
+  "version": "0.1",
+  "description": "Enables ultimate control over tabs.",
+  "manifest_version": 2,
+  "icons": {
+    "16": "./icon-16.png",
+    "32": "./icon-32.png",
+    "48": "./icon-48.png",
+    "128": "./icon-128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "empty.html"
+  },
+  "background": {
+    "scripts": ["./background.js"],
+    "persistent": false
+  },
+  "options_page": "./options.html",
+  "browser_action": {
+    "default_popup": "./popup.html"
+  },
+  "permissions": ["tabs"],
+  "commands": {
+    "close-tabs-all-except": {
+      "suggested_key": {
+        "mac": "MacCtrl+Shift+Up",
+        "default": "Ctrl+Shift+Up"
+      },
+      "description": "Close all tabs except for current tab."
+    },
+    "close-tabs-all-including": {
+      "suggested_key": {
+        "mac": "MacCtrl+Shift+Down",
+        "default": "Ctrl+Shift+Down"
+      },
+      "description": "Close all tabs including current tab."
+    },
+    "close-tabs-right": {
+      "suggested_key": {
+        "mac": "MacCtrl+Shift+Right",
+        "default": "Ctrl+Shift+Right"
+      },
+      "description": "Close all tabs to right of current tab."
+    },
+    "close-tabs-left": {
+      "suggested_key": {
+        "mac": "MacCtrl+Shift+Left",
+        "default": "Ctrl+Shift+Left"
+      },
+      "description": "Close all tabs to left of current tab."
+    }
+  }
+}
