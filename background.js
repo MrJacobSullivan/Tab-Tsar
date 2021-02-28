@@ -11,25 +11,26 @@ chrome.commands.onCommand.addListener((command) => {
       case 'close-tabs-all-except':
         tabs.filter((tab) => {
           if (tab.index != currentTabIndex) {
-            console.log(`Tabs to be removed: ${tab.index}`)
+            chrome.tabs.remove(tab.id)
           }
         })
         break
       case 'close-tabs-all-including':
-        for (element of tabs)
-          console.log(`Tabs to be removed: ${element.index}`)
+        tabs.filter((tab) => {
+          chrome.tabs.remove(tab.id)
+        })
         break
       case 'close-tabs-right':
         tabs.filter((tab) => {
           if (tab.index > currentTabIndex) {
-            console.log(`Tabs to be removed: ${tab.index}`)
+            chrome.tabs.remove(tab.id)
           }
         })
         break
       case 'close-tabs-left':
         tabs.filter((tab) => {
           if (tab.index < currentTabIndex) {
-            console.log(`Tabs to be removed: ${tab.index}`)
+            chrome.tabs.remove(tab.id)
           }
         })
         break
