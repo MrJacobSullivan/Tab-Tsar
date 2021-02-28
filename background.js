@@ -21,7 +21,7 @@ chrome.commands.onCommand.addListener((command) => {
                 tabsToDelete.push(element)
               break
             case 'close-tabs-all-including':
-              console.log('close all other')
+              for (var element of tabs) tabsToDelete.push(element)
               break
             case 'close-tabs-right':
               console.log('close tabs right')
