@@ -1,12 +1,11 @@
 chrome.commands.onCommand.addListener((command) => {
   chrome.tabs.getAllInWindow(null, (tabs) => {
-    for (const [index, tab] of tabs.entries()) {
-      if (tab.active) var currentTab = tabs[index]
-    }
+    let currentTabIndex = 0
 
-    const currentTabIndex = currentTab.index
+    tabs.filter((tab) => {
+      if (tab.active) currentTabIndex = tab.index
+    })
 
-    console.log(`Current Tab: ${currentTabIndex}`)
     switch (command) {
       case 'close-tabs-all-except':
         tabs.filter((tab) => {
