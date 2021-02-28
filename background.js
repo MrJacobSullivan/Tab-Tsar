@@ -1,45 +1,38 @@
 chrome.commands.onCommand.addListener((command) => {
-  chrome.windows.getCurrent((currentWindow) => {
-    chrome.tabs.getSelected(null, (currentTab) => {
-      chrome.tabs.query(
-        {
-          active: false,
-          pinned: false,
-          windowId: currentWindow.id,
-        },
-        (tabs) => {
-          const tabIds = new Array(tabs.length)
-          for (var tab of tabs) tabIds.push(tab.id)
+  chrome.tabs.getAllInWindow(null, (tabs) => {
+    for (const [index, tab] of tabs.entries()) {
+      if (tab.active) var currentTab = tabs[index]
+    }
 
-          const tabsToDelete = []
+    const currentTabIndex = currentTab.index
 
-          switch (command) {
-            case 'close-tabs-all-except':
-              for (var element of tabIds.filter(
-                (value) => value !== currentTab.id
-              ))
-                tabsToDelete.push(element)
-              break
-            case 'close-tabs-all-including':
-              for (var element of tabIds) tabsToDelete.push(element)
-              break
-            case 'close-tabs-right':
-              for (var element of tabIds.slice(
-                tabIds.indexOf(currentTab.id + 1)
-              ))
-                tabsToDelete.push(element)
-              break
-            case 'close-tabs-left':
-              for (var element of tabIds.slice(
-                null,
-                tabIds.indexOf(currentTab.id)
-              ))
-                tabsToDelete.push(element)
-              break
+    console.log(`Current Tab: ${currentTabIndex}`)
+    switch (command) {
+      case 'close-tabs-all-except':
+        tabs.filter((tab) => {
+          if (tab.index != currentTabIndex) {
+            console.log(`Tabs to be removed: ${tab.index}`)
           }
-          chrome.tabs.remove(tabsToDelete)
-        }
-      )
-    })
+        })
+        break
+      case 'close-tabs-all-including':
+        for (element of tabs)
+          console.log(`Tabs to be removed: ${element.index}`)
+        break
+      case 'close-tabs-right':
+        tabs.filter((tab) => {
+          if (tab.index > currentTabIndex) {
+            console.log(`Tabs to be removed: ${tab.index}`)
+          }
+        })
+        break
+      case 'close-tabs-left':
+        tabs.filter((tab) => {
+          if (tab.index < currentTabIndex) {
+            console.log(`Tabs to be removed: ${tab.index}`)
+          }
+        })
+        break
+    }
   })
 })
