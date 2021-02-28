@@ -24,7 +24,8 @@ chrome.commands.onCommand.addListener((command) => {
               for (var element of tabs) tabsToDelete.push(element)
               break
             case 'close-tabs-right':
-              console.log('close tabs right')
+              for (var element of tabs.slice(tabs.indexOf(currentTab + 1)))
+                tabsToDelete.push(element)
               break
             case 'close-tabs-left':
               console.log('close tabs left')
