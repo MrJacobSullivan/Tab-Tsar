@@ -19,7 +19,7 @@ Install like normal. Setup keybindings.
 
 👤 **Jacob Sullivan**
 
-- Website: j.cobsullivan.com
+- Website: [Chrome Extension Store](https://chrome.google.com/webstore/detail/tab-tsar/efdechgodaplicehdhpfjimdlbffohpk?hl=en)
 - Github: [@MrJacobSullivan](https://github.com/MrJacobSullivan)
 
 ## License
