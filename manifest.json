@@ -9,9 +9,6 @@
     "48": "./static/icon-48.png",
     "128": "./static/icon-128.png"
   },
-  "chrome_url_overrides": {
-    "newtab": "./html/empty.html"
-  },
   "background": {
     "scripts": ["./background.js"],
     "persistent": false
